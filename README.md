@@ -6,7 +6,7 @@ Programa sencillo para **alternar configuraciones de Git** en Windows, de forma 
 
 ## 💾 **Descarga**
 
-[🔗 **Descargar ejecutable hecho en rust**](https://github.com/MrSCR98/eliminar-cache-windows/releases/download/Ejecutable/borrar-cache.exe)
+[🔗 **Descargar ejecutable hecho en rust**](https://github.com/MrSCR98/intercambiar-git-config/releases/download/Ejecutable/Intercambiar-Git-Config.exe)
 
 ---
 
@@ -86,6 +86,23 @@ Si quieres hacerlo tú mismo sin ejecutar el programa:
 5. Haz clic en **Quitar**
 
 > ⚠️ Esto es exactamente lo que hace el programa automáticamente después de intercambiar las configuraciones.  
+
+---
+
+## 🎨 Cómo cambiar el icono del ejecutable (opcional)
+
+Si quieres personalizar el icono del archivo .exe:
+
+1. Descarga la herramienta **rcedit**:  
+   [Descargar rcedit](https://github.com/electron/rcedit/releases)
+2. Crea tu imagen en formato PNG y luego conviértela a .ICO (por ejemplo, 64x64px).
+3. Ejecuta el siguiente comando en la misma carpeta donde esté tu .exe e icono:
+
+```
+rcedit-x64.exe "intercambiar-git-config.exe" --set-icon "favicon_64x64.ico" --set-file-version "1.0.0" --set-product-version "1.0.0"
+```
+
+**Consejo:** Para que el icono se vea bien en todos los tamaños, asegúrate de usar un archivo .ICO que contenga varias resoluciones (16x16, 32x32, 64x64, etc.).
 
 ---
 
