@@ -14,6 +14,31 @@ async function existeArchivo(ruta: string): Promise<boolean> {
 }
 
 /**
+ * Elimina la credencial de GitHub de Windows
+ * (Panel de control → Cuentas de usuario → Administrar credenciales → Credenciales de Windows → git:https://github.com → Quitar)
+ */
+async function borrarCredencialGitHub() {
+  console.log("🗝️ Eliminando credencial git:https://github.com");
+
+  const proc = Bun.spawn(
+    ["cmd", "/c", "cmdkey /delete:git:https://github.com"],
+    {
+      stdout: "ignore",
+      stderr: "ignore",
+      windowsHide: true,
+    }
+  );
+
+  await proc.exited;
+
+  if (proc.exitCode === 0) {
+    console.log("✅ Credencial eliminada");
+  } else {
+    console.log("ℹ️ La credencial no existía o ya estaba eliminada");
+  }
+}
+
+/**
  * Cambia configuraciones solo si hay EXACTAMENTE dos archivos
  */
 async function cambiarConfiguracionGit() {
@@ -45,18 +70,29 @@ async function cambiarConfiguracionGit() {
   }
 
   // Casos permitidos
+
+  // Caso: .gitconfig + .gitconfig1
   if (existeBase && existeUno) {
     console.log("🔄 Intercambiando .gitconfig ↔ .gitconfig1");
+
     await rename(rutaGitconfig, rutaGitconfig2);
     await rename(rutaGitconfig1, rutaGitconfig);
+
+    await borrarCredencialGitHub();
+
     console.log("✅ Cambio realizado");
     return;
   }
 
+  // Caso: .gitconfig + .gitconfig2
   if (existeBase && existeDos) {
     console.log("🔄 Intercambiando .gitconfig ↔ .gitconfig2");
+
     await rename(rutaGitconfig, rutaGitconfig1);
     await rename(rutaGitconfig2, rutaGitconfig);
+
+    await borrarCredencialGitHub();
+
     console.log("✅ Cambio realizado");
     return;
   }
@@ -69,6 +105,7 @@ async function cambiarConfiguracionGit() {
  */
 async function principal() {
   console.log("\n🔧 Gestor ultra seguro de .gitconfig\n");
+
   try {
     await cambiarConfiguracionGit();
   } catch (error) {

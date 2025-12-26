@@ -58,7 +58,7 @@ intercambiar-git-config.exe
 - `.gitconfig` + `.gitconfig1` → se intercambian los nombres  
 - `.gitconfig` + `.gitconfig2` → se intercambian los nombres  
 
-La configuración activa cambia automáticamente.
+Además, **el programa elimina automáticamente la credencial de GitHub** almacenada en Windows (`git:https://github.com`) para evitar que Git use credenciales antiguas.
 
 ---
 
@@ -70,6 +70,20 @@ La configuración activa cambia automáticamente.
 
 > 🔒 El programa **nunca borra, sobrescribe ni modifica** el contenido de los archivos.  
 > Solo cambia los nombres cuando es **seguro**.
+
+---
+
+### 5️⃣ Cómo quitar la credencial de GitHub manualmente (opcional)
+
+Si quieres hacerlo tú mismo sin ejecutar el programa:
+
+1. Abre **Panel de control**  
+2. Ve a **Cuentas de usuario → Administrar credenciales**  
+3. Selecciona **Credenciales de Windows**  
+4. Busca la entrada `git:https://github.com`  
+5. Haz clic en **Quitar**
+
+> ⚠️ Esto es exactamente lo que hace el programa automáticamente después de intercambiar las configuraciones.  
 
 ---
 
@@ -105,4 +119,5 @@ bun run exe
 ---
 
 🧠 **Resumen rápido:**  
-> *Si no hay exactamente 2 archivos válidos, el programa no hace nada. Solo intercambia nombres cuando es seguro.*
+> *Si no hay exactamente 2 archivos válidos, el programa no hace nada.  
+> Solo intercambia nombres cuando es seguro y elimina la credencial de GitHub (\`git:https://github.com\`) automáticamente.*
