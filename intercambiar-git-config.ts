@@ -1,4 +1,4 @@
-import { rename, access } from "fs/promises";
+import { rename, access, readFile } from "fs/promises";
 import { join } from "path";
 
 /**
@@ -10,6 +10,26 @@ async function existeArchivo(ruta: string): Promise<boolean> {
     return true;
   } catch {
     return false;
+  }
+}
+
+/**
+ * Lee el nombre y correo de un archivo .gitconfig y lo imprime
+ */
+async function mostrarUsuarioGit(ruta: string) {
+  try {
+    const contenido = await readFile(ruta, "utf-8");
+
+    // .match puede devolver null, por eso usamos nullish coalescing y chequeo
+    const nombreMatch = contenido.match(/name\s*=\s*(.+)/);
+    const emailMatch = contenido.match(/email\s*=\s*(.+)/);
+
+    const nombre = nombreMatch?.[1]?.trim() ?? "Desconocido";
+    const email = emailMatch?.[1]?.trim() ?? "Desconocido";
+
+    console.log(`📌 Configuración activa: ${nombre} <${email}>`);
+  } catch {
+    console.log("ℹ️ No se pudo leer la configuración de usuario del .gitconfig");
   }
 }
 
@@ -79,6 +99,7 @@ async function cambiarConfiguracionGit() {
     await rename(rutaGitconfig1, rutaGitconfig);
 
     await borrarCredencialGitHub();
+    await mostrarUsuarioGit(rutaGitconfig);
 
     console.log("✅ Cambio realizado");
     return;
@@ -92,6 +113,7 @@ async function cambiarConfiguracionGit() {
     await rename(rutaGitconfig2, rutaGitconfig);
 
     await borrarCredencialGitHub();
+    await mostrarUsuarioGit(rutaGitconfig);
 
     console.log("✅ Cambio realizado");
     return;

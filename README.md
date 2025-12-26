@@ -120,4 +120,4 @@ bun run exe
 
 🧠 **Resumen rápido:**  
 > *Si no hay exactamente 2 archivos válidos, el programa no hace nada.  
-> Solo intercambia nombres cuando es seguro y elimina la credencial de GitHub (\`git:https://github.com\`) automáticamente.*
+> Solo intercambia nombres cuando es seguro y elimina la credencial de GitHub (`git:https://github.com`) automáticamente.*
