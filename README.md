@@ -60,6 +60,8 @@ intercambiar-git-config.exe
 
 Además, **el programa elimina automáticamente la credencial de GitHub** almacenada en Windows (`git:https://github.com`) para evitar que Git use credenciales antiguas.
 
+> ⚠️ Ten en cuenta que al cambiar de usuario de Git, **cualquier acción que requiera autenticación** (push, pull, clone privado, etc.) te pedirá iniciar sesión nuevamente o introducir un token de acceso.
+
 ---
 
 #### ❌ Casos en los que **NO pasa nada**
