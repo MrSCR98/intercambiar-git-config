@@ -4,12 +4,6 @@ Programa sencillo para **alternar configuraciones de Git** en Windows, de forma 
 
 ---
 
-## 💾 **Descarga**
-
-[🔗 **Descargar ejecutable hecho en rust**](https://github.com/MrSCR98/eliminar-cache-windows/releases/download/Ejecutable/borrar-cache.exe)
-
----
-
 ## ⚙️ **Cómo usar el programa**
 
 ### 1️⃣ Archivos necesarios
@@ -86,6 +80,37 @@ Si quieres hacerlo tú mismo sin ejecutar el programa:
 5. Haz clic en **Quitar**
 
 > ⚠️ Esto es exactamente lo que hace el programa automáticamente después de intercambiar las configuraciones.  
+
+---
+
+## 💻 **Uso para desarrolladores / pruebas**
+
+Si quieres probar o modificar el script, necesitas **Bun**:
+
+### 1️⃣ Descarga el proyecto
+Clona o descarga los archivos del repositorio.
+
+### 2️⃣ Instala Bun
+Sigue las instrucciones oficiales de [Bun](https://bun.com/) para tu sistema.
+
+### 3️⃣ Abre el proyecto y descarga dependencias
+```cmd
+bun install
+```
+
+### 4️⃣ Ejecutar en modo desarrollo
+```cmd
+bun run dev
+```
+
+> Esto mostrará los **logs en tiempo real** y la ventana no se cierra automáticamente, perfecto para depurar.
+
+### 5️⃣ Crear el ejecutable optimizado para Windows
+```cmd
+bun run exe
+```
+
+> Esto genera el `.exe` listo para uso normal.
 
 ---
 
